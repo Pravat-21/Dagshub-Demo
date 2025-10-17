@@ -57,10 +57,10 @@ with mlflow.start_run():
     mlflow.log_artifact("confusion_matrix.png")
 
     mlflow.log_artifact(__file__)
-    #signature = infer_signature(X_train, dt.predict(X_train))
+    signature = infer_signature(X_train, dt.predict(X_train))
 
-    #mlflow.sklearn.log_model(dt,name="Decision tree",signature=signature)
-    mlflow.sklearn.log_model(dt,name="Decision tree")
+    mlflow.sklearn.log_model(dt,name="Decision tree",signature=signature)
+    #mlflow.sklearn.log_model(dt,name="Decision tree")
 
     mlflow.set_tag('author','Pravat')
     mlflow.set_tag('model','decision tree')

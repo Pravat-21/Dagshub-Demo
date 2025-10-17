@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix
 import matplotlib.pyplot as plt
 import seaborn as sns
+from mlflow.models import infer_signature
 
 import dagshub
 dagshub.init(repo_owner='Pravat-21', repo_name='Dagshub-Demo', mlflow=True)
@@ -56,8 +57,10 @@ with mlflow.start_run():
     mlflow.log_artifact("confusion_matrix.png")
 
     mlflow.log_artifact(__file__)
+    #signature = infer_signature(X_train, dt.predict(X_train))
 
-    mlflow.sklearn.log_model(dt,name="Decision tree",input_example=X_train)
+    #mlflow.sklearn.log_model(dt,name="Decision tree",signature=signature)
+    mlflow.sklearn.log_model(dt,name="Decision tree")
 
     mlflow.set_tag('author','Pravat')
     mlflow.set_tag('model','decision tree')
